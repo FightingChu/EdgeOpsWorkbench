@@ -1,0 +1,4 @@
+{"message": "fixture 1 record 0", "severity": "debug", "service": "service-01", "device_id": "device-01", "recorded_at": "2026-10-19T09:01:00Z", "trace": {"fixture": 1, "sequence": 0}}
+{"message": "fixture 1 record 1", "severity": "info", "service": "service-01", "device_id": "device-01", "recorded_at": "2026-10-19T09:01:01Z", "trace": {"fixture": 1, "sequence": 1}}
+{"message": "fixture 1 record 2", "severity": "warning", "service": "service-01", "device_id": "device-01", "recorded_at": "2026-10-19T09:01:02Z", "trace": {"fixture": 1, "sequence": 2}}
+{"message": "fixture 1 record 3", "severity": "error", "service": "service-01", "device_id": "device-01", "recorded_at": "2026-10-19T09:01:03Z", "trace": {"fixture": 1, "sequence": 3}}

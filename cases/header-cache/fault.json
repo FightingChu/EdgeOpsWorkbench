@@ -1,0 +1,8 @@
+{
+  "file": "edgeops/api/server.py",
+  "old": "self.send_header(\"Cache-Control\", \"no-store\")",
+  "new": "self.send_header(\"Cache-Control\", \"max-age=60\")",
+  "checks": [
+    "public_tests.test_regression"
+  ]
+}

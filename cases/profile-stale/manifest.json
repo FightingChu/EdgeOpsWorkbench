@@ -1,0 +1,22 @@
+{
+  "id": "profile-stale",
+  "title": "Profile Stale",
+  "domain": "operations",
+  "subdomain": "reliability",
+  "mechanism": "controlled regression with observable evidence",
+  "category": "F02 Verification depth",
+  "rounds": 3,
+  "constraints": [
+    "runtime dependencies remain empty",
+    "main workspace stays healthy"
+  ],
+  "setup": "python setup.py --target <disposable-path>",
+  "public_checks": [
+    "python -m unittest public_tests.test_regression -v"
+  ],
+  "verify": "python verify.py --target <disposable-path>",
+  "tags": [
+    "isolated-case",
+    "regression"
+  ]
+}

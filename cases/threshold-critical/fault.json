@@ -1,0 +1,8 @@
+{
+  "file": "edgeops/domain/rules.py",
+  "old": "\"temperature\": ((85.0, \"critical\"), (75.0, \"warning\"))",
+  "new": "\"temperature\": ((95.0, \"critical\"), (75.0, \"warning\"))",
+  "checks": [
+    "public_tests.test_regression"
+  ]
+}

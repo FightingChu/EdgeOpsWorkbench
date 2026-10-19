@@ -1,0 +1,15 @@
+{
+  "id": "replace-with-case-id",
+  "title": "Replace with a specific observable failure",
+  "domain": "通用软件开发",
+  "subdomain": "D01.2 缺陷修复与线上排障",
+  "mechanism": "跨轮约束或上下文丢失",
+  "category": "F01 目标理解与约束执行",
+  "rounds": 3,
+  "constraints": ["不得引入新依赖"],
+  "setup": "python setup.py --target <disposable-path>",
+  "public_checks": ["python -m unittest discover -s public_tests -v"],
+  "verify": "python verify.py --target <disposable-path>",
+  "tags": ["backend", "multi-turn", "dependency-boundary"]
+}
+

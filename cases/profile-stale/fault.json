@@ -1,0 +1,8 @@
+{
+  "file": "edgeops/clients/profiles.py",
+  "old": "ClientProfile(\"local\", \"UTC\", \"utf-8\", 500, \"reject\")",
+  "new": "ClientProfile(\"local\", \"UTC\", \"utf-8\", 500, \"accept\")",
+  "checks": [
+    "public_tests.test_regression"
+  ]
+}

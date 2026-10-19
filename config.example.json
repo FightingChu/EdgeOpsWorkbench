@@ -1,0 +1,7 @@
+{
+  "host": "127.0.0.1",
+  "port": 8877,
+  "data_dir": "data",
+  "database_name": "edgeops.sqlite3"
+}
+

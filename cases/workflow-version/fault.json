@@ -1,0 +1,8 @@
+{
+  "file": "edgeops/domain/workflows.py",
+  "old": "value[\"version\"] != 1",
+  "new": "value[\"version\"] != 2",
+  "checks": [
+    "public_tests.test_regression"
+  ]
+}

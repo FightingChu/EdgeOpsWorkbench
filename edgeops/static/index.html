@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EdgeOps Workbench</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="manifest" href="/manifest.webmanifest">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">LOCAL OPERATIONS</p>
+      <h1>EdgeOps Workbench</h1>
+    </div>
+    <div class="health"><span class="health-dot"></span><span>Service online</span></div>
+  </header>
+  <main>
+    <section id="metrics" class="metrics" aria-label="System summary"></section>
+    <section class="workspace">
+      <div class="panel">
+        <div class="panel-heading"><h2>Open incidents</h2><span id="incident-count"></span></div>
+        <div id="incidents" class="table-wrap"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-heading"><h2>Devices</h2><span id="device-count"></span></div>
+        <div id="devices" class="table-wrap"></div>
+      </div>
+    </section>
+    <section class="panel telemetry-panel">
+      <div class="panel-heading"><h2>Recent telemetry</h2><span>Latest 12 readings</span></div>
+      <div id="telemetry" class="table-wrap"></div>
+    </section>
+    <section class="panel event-panel">
+      <div class="panel-heading"><h2>Events</h2><span id="event-count" aria-live="polite"></span></div>
+      <form id="event-filters" class="filters">
+        <label>Search message<input name="q" type="search" maxlength="256" placeholder="Search events"></label>
+        <label>Severity<select name="severity"><option value="">All severities</option></select></label>
+        <label>Service<select name="service"><option value="">All services</option></select></label>
+        <label>Device<select name="device_id"><option value="">All devices</option></select></label>
+        <label>From (local time)<input name="since" type="datetime-local"></label>
+        <label>Until (local time)<input name="until" type="datetime-local"></label>
+        <button type="submit">Apply filters</button><button type="reset">Reset</button>
+      </form>
+      <p id="event-error" class="error" role="alert" hidden></p>
+      <div id="events" class="table-wrap"></div>
+      <div class="pagination"><button id="events-prev" disabled>Previous</button><span id="event-page"></span><button id="events-next" disabled>Next</button></div>
+    </section>
+    <section id="incident-detail" class="panel" hidden aria-labelledby="detail-title" tabindex="-1">
+      <div class="panel-heading"><h2 id="detail-title">Incident detail</h2><button id="close-detail">Close</button></div>
+      <div id="detail-body"></div>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+  <script src="/sw-register.js"></script>
+</body>
+</html>

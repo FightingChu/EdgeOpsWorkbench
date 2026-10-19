@@ -1,0 +1,8 @@
+{
+  "file": "edgeops/devices/protocol/framing.py",
+  "old": "VERSION = 1",
+  "new": "VERSION = 2",
+  "checks": [
+    "public_tests.test_regression"
+  ]
+}

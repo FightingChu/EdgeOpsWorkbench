@@ -1,0 +1,8 @@
+{
+  "file": "edgeops/domain/jobs.py",
+  "old": "return min(3600, delay * 2 ** (attempt - 1))",
+  "new": "return min(60, delay * 2 ** (attempt - 1))",
+  "checks": [
+    "public_tests.test_regression"
+  ]
+}

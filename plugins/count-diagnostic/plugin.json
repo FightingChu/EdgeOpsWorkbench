@@ -1,0 +1,1 @@
+{"version":1,"name":"count-diagnostic","kind":"diagnostic","entrypoint":"plugin.py:invoke","capabilities":["data.summarize"],"description":"Count supplied event records by severity and service without exposing messages."}

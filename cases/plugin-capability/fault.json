@@ -1,0 +1,8 @@
+{
+  "file": "edgeops/domain/plugins.py",
+  "old": "\"importer\": {\"events.decode\"}",
+  "new": "\"importer\": {\"events.encode\"}",
+  "checks": [
+    "public_tests.test_regression"
+  ]
+}

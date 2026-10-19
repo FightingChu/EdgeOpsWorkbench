@@ -1,0 +1,9 @@
+{
+  "case": "protocol",
+  "sequence": 5,
+  "payload": "xxxxx",
+  "expected": {
+    "accepted": true,
+    "version": 1
+  }
+}

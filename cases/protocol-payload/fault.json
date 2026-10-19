@@ -1,0 +1,8 @@
+{
+  "file": "edgeops/devices/protocol/framing.py",
+  "old": "MAX_PAYLOAD = 4096",
+  "new": "MAX_PAYLOAD = 0",
+  "checks": [
+    "public_tests.test_regression"
+  ]
+}

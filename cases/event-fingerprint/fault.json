@@ -1,0 +1,8 @@
+{
+  "file": "edgeops/domain/events.py",
+  "old": "return hashlib.sha256(self.canonical_json().encode(\"utf-8\")).hexdigest()",
+  "new": "return hashlib.md5(self.canonical_json().encode(\"utf-8\")).hexdigest()",
+  "checks": [
+    "public_tests.test_regression"
+  ]
+}

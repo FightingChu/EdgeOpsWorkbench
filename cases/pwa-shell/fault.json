@@ -1,0 +1,8 @@
+{
+  "file": "edgeops/static/index.html",
+  "old": "\"/manifest.webmanifest\"",
+  "new": "\"/missing.webmanifest\"",
+  "checks": [
+    "public_tests.test_regression"
+  ]
+}

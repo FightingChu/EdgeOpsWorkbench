@@ -1,0 +1,4 @@
+{"device_id":"press-01","kind":"log","severity":"info","message":"cycle started","recorded_at":"2026-10-19T09:00:00+00:00"}
+{"device_id":"press-01","kind":"log","severity":"warning","message":"vibration above baseline","recorded_at":"2026-10-19T09:00:03+00:00"}
+{"device_id":"camera-01","kind":"log","severity":"error","message":"inspection frame delayed","recorded_at":"2026-10-19T09:00:05+00:00"}
+

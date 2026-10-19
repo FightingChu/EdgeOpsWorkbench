@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=65"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "edgeops-workbench"
+version = "0.1.0"
+description = "Local-first device telemetry and incident-response workbench"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools]
+packages = [
+  "edgeops",
+  "edgeops.api",
+  "edgeops.application",
+  "edgeops.devices",
+  "edgeops.devices.protocol",
+  "edgeops.media",
+  "edgeops.security",
+  "edgeops.clients",
+  "edgeops.domain",
+  "edgeops.persistence",
+  "edgeops.plugins",
+  "edgeops.benchmark",
+]
+
+[tool.setuptools.package-data]
+edgeops = ["static/*.html", "static/*.css", "static/*.js", "static/*.webmanifest"]

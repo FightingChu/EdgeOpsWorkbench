@@ -1,0 +1,1 @@
+{"version":1,"name":"severity-rule","kind":"rule","entrypoint":"plugin.py:invoke","capabilities":["events.evaluate"],"description":"Evaluate whether each event reaches a selected minimum severity."}

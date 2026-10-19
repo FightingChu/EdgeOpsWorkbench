@@ -1,0 +1,1 @@
+{"version":1,"name":"export-jsonl","kind":"exporter","entrypoint":"plugin.py:invoke","capabilities":["events.encode"],"description":"Encode canonical events into strict JSONL for symmetric data exchange."}

@@ -1,0 +1,8 @@
+{
+  "file": "edgeops/security/audit.py",
+  "old": "\"X-Frame-Options\": \"DENY\"",
+  "new": "\"X-Frame-Options\": \"ALLOW\"",
+  "checks": [
+    "public_tests.test_regression"
+  ]
+}

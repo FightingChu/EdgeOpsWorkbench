@@ -1,0 +1,2 @@
+"""EdgeOps test suite."""
+

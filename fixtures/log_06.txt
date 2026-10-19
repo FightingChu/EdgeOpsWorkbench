@@ -1,0 +1,6 @@
+2026-10-19T09:00:00Z service-06 level=INFO cycle=0
+2026-10-19T09:00:01Z service-06 level=WARN cycle=1
+2026-10-19T09:00:02Z service-06 level=INFO cycle=2
+2026-10-19T09:00:03Z service-06 level=WARN cycle=3
+2026-10-19T09:00:04Z service-06 level=INFO cycle=4
+2026-10-19T09:00:05Z service-06 level=WARN cycle=5

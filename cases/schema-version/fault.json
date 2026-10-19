@@ -1,0 +1,8 @@
+{
+  "file": "edgeops/persistence/migrations.py",
+  "old": "SCHEMA_VERSION = 4",
+  "new": "SCHEMA_VERSION = 3",
+  "checks": [
+    "public_tests.test_regression"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "file": "edgeops/media/evidence.py",
+  "old": "MAX_MEDIA_BYTES = 16 * 1024 * 1024",
+  "new": "MAX_MEDIA_BYTES = 1024",
+  "checks": [
+    "public_tests.test_regression"
+  ]
+}

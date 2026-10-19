@@ -1,0 +1,8 @@
+{
+  "file": "edgeops/application/event_import.py",
+  "old": "\"gb18030\", \"cp1252\"",
+  "new": "\"utf-8\", \"cp1252\"",
+  "checks": [
+    "public_tests.test_regression"
+  ]
+}

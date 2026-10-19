@@ -1,0 +1,8 @@
+{
+  "file": "edgeops/application/event_import.py",
+  "old": "MAX_RECORDS = 10000",
+  "new": "MAX_RECORDS = 100",
+  "checks": [
+    "public_tests.test_regression"
+  ]
+}

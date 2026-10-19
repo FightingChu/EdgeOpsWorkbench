@@ -1,0 +1,8 @@
+{
+  "file": "edgeops/media/redaction.py",
+  "old": "\"api_key\", \"path\", \"filepath\", \"file_path\"",
+  "new": "\"api_key\", \"path\"",
+  "checks": [
+    "public_tests.test_regression"
+  ]
+}
