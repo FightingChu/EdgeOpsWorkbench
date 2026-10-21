@@ -1,4 +1,4 @@
-"""Small standard-library HTTP client for local API smoke tests."""
+"""Standard-library HTTP client for the local JSON API."""
 
 import json
 from urllib.request import Request, urlopen

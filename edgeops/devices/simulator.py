@@ -1,4 +1,4 @@
-"""Deterministic bootstrap data for local demonstrations and tests."""
+"""Deterministic device registration and telemetry simulation."""
 
 from datetime import datetime, timedelta, timezone
 
@@ -33,4 +33,3 @@ def load_demo(service, start=None):
             recorded_at=(start + timedelta(seconds=offset)).isoformat(),
         ))
     return service.summary()
-

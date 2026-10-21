@@ -41,10 +41,9 @@ def load_settings(config_path=None, *, host=None, port=None, data_dir=None):
         database_name=str(values.get("database_name", "edgeops.sqlite3")),
     )
     if settings.host not in {"127.0.0.1", "localhost"}:
-        raise ValueError("the bootstrap server only accepts a local host")
+        raise ValueError("the server only accepts a local host")
     if not 1 <= settings.port <= 65535:
         raise ValueError("port must be between 1 and 65535")
     if Path(settings.database_name).name != settings.database_name:
         raise ValueError("database_name must be a filename")
     return settings
-

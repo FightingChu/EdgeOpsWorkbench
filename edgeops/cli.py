@@ -12,6 +12,7 @@ from .config import load_settings
 from .devices import load_demo
 from .domain.event_query import EventQuery
 from . import cli_cases, cli_data, cli_jobs, cli_workflows
+from . import cli_analytics, cli_alerts, cli_configuration, cli_interchange, cli_deployments
 
 
 def parser():
@@ -26,6 +27,8 @@ def parser():
     cli_data.configure(subcommands)
     cli_workflows.configure(subcommands)
     cli_cases.configure(subcommands)
+    for extension in (cli_analytics,cli_alerts,cli_configuration,cli_interchange,cli_deployments):
+        extension.configure(subcommands)
     ingest = subcommands.add_parser("import-events", help="atomically import a JSONL or text file")
     ingest.add_argument("path")
     ingest.add_argument("--format", choices=("jsonl", "text"), default="jsonl")
@@ -71,6 +74,9 @@ def _run(argv=None):
         print(json.dumps(result, ensure_ascii=False, indent=2))
         if args.case_command == "verify" and not result["passed"]:
             return 1
+    elif args.command in {"analytics","evaluate-rules","configuration","convert-events","export-events","deployments"}:
+        handlers={"analytics":cli_analytics,"evaluate-rules":cli_alerts,"configuration":cli_configuration,"convert-events":cli_interchange,"export-events":cli_interchange,"deployments":cli_deployments}
+        print(json.dumps(handlers[args.command].run(args,service),ensure_ascii=False,indent=2))
     elif args.command == "serve":
         server = make_server(settings)
         url = f"http://{settings.host}:{server.server_address[1]}"

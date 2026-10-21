@@ -27,7 +27,7 @@ def inspect_database(path):
         version = int(row[0]) if row else 0
         names = {row[0] for row in connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
         counts = {}
-        for table in ("devices", "telemetry", "incidents", "events", "event_imports", "event_origins", "jobs", "job_runs", "schedules", "health_snapshots", "audit_entries", "workflow_runs", "workflow_steps"):
+        for table in ("devices", "telemetry", "incidents", "events", "event_imports", "event_origins", "jobs", "job_runs", "schedules", "health_snapshots", "audit_entries", "workflow_runs", "workflow_steps", "firmware_artifacts", "deployments", "deployment_transitions"):
             if table in names:
                 counts[table] = connection.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
         return {"ok": integrity == ["ok"] and not foreign_keys and 1 <= version <= SCHEMA_VERSION,

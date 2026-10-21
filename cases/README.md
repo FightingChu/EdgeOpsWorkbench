@@ -2,7 +2,7 @@
 
 Cases create controlled defects or environmental conditions in disposable project copies. The clean repository must remain runnable.
 
-Each case directory will contain:
+Each case directory contains:
 
 ```text
 case-id/
@@ -24,4 +24,3 @@ Setup scripts must:
 5. Never alter Git remotes, user configuration, or the clean source database.
 
 Verification scripts should check observable behavior, preserved constraints, requested evidence, and prohibited side effects. They must return a nonzero exit status on failure.
-

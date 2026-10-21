@@ -1,4 +1,4 @@
-"""Example importer: an explicit text request becomes normalized event values."""
+"""JSONL importer that converts text requests into normalized event values."""
 
 from edgeops.plugins.codecs import decode_events
 

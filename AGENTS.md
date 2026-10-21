@@ -2,7 +2,7 @@
 
 ## Project intent
 
-EdgeOps Workbench is a local-first device telemetry, monitoring, incident-response, and task-case platform. The repository is deliberately broad enough to support backend, frontend, data, operations, CLI, client, embedded, media, and security engineering tasks without becoming a collection of unrelated demos.
+EdgeOps Workbench is a local-first device telemetry, monitoring, incident-response, and task-case platform. Its modules cover backend services, browser interfaces, data processing, operations, CLI tools, client state, device protocols, media evidence, and security checks.
 
 ## Hard constraints
 
@@ -13,7 +13,7 @@ EdgeOps Workbench is a local-first device telemetry, monitoring, incident-respon
 - Main must remain healthy. Benchmark defects belong in isolated copies created by `cases/<id>/setup.py`.
 - Tests must not require the public internet or long wall-clock sleeps.
 - Keep generated databases, logs, build outputs, and scenario worktrees out of Git.
-- Do not manufacture files to hit the 500-file budget. Every maintained file needs a clear owner and purpose.
+- Every maintained file needs a clear owner and purpose; do not add empty or duplicate files.
 
 ## Architecture boundaries
 
@@ -36,7 +36,6 @@ python scripts/verify.py
 
 For JavaScript changes, also run `node --check edgeops/static/app.js` when Node.js is available.
 
-## Current stage
+## Project documentation
 
-Stage A bootstrap is implemented. Read `HANDOFF.md`, `docs/DEVELOPMENT_PLAN.md`, and `docs/ARCHITECTURE.md` before expanding the project.
-
+Read `HANDOFF.md` for operations, `docs/DEVELOPMENT_PLAN.md` for module responsibilities and maintenance rules, and `docs/ARCHITECTURE.md` for system boundaries and transaction rules.

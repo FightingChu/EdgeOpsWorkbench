@@ -1,23 +1,37 @@
-# Maintained File Budget
+# Maintained File Inventory
 
-The long-term target is 500 maintained files with a working range of 480-520.
+The repository contains 513 maintained files as of 2026-10-21. File inventory and executable-source counts are reported separately.
 
-The 300-file milestone was reached on 2026-10-19 with 310 maintained files. The added files cover protocol parsing, event ingestion, durable work, workflows, plugins, clients, media evidence, security checks, fixtures, documentation, and isolated benchmark cases. The count excludes generated databases, logs, caches, bytecode, and copied case workspaces.
-
-| Area | Target |
+| Area | Maintained files |
 | --- | ---: |
-| Repository controls, packaging, CI, and governance | 18 |
-| Python domain, application, persistence, and API | 110 |
-| Web and PWA client | 58 |
-| CLI, workflow, and plugin platform | 42 |
-| Desktop client | 28 |
-| Device simulator, protocol, and C agent | 54 |
-| Image and media evidence pipeline | 28 |
-| Security audit and diagnostics | 20 |
-| Unit, integration, HTTP, migration, concurrency, and regression tests | 92 |
-| Curated fixtures and benchmark scenarios | 32 |
-| Documentation, build, and release tooling | 18 |
-| **Total** | **500** |
+| Repository configuration and entrypoints | 7 |
+| Product code and static assets (`edgeops/`) | 191 |
+| Unit, integration, HTTP, and regression tests (`tests/`) | 130 |
+| Benchmark bundles, schema, and authoring assets (`cases/`) | 129 |
+| Curated fixtures (`fixtures/`) | 26 |
+| Plugin implementations and manifests (`plugins/`) | 8 |
+| Documentation (`docs/`) | 20 |
+| Verification and AST audit scripts (`scripts/`) | 2 |
+| **Total** | **513** |
 
-Generated data, caches, build products, copied fixtures, scenario worktrees, vendored dependencies, and duplicate build output are excluded.
+Generated data, caches, build products, scenario workspaces, vendored dependencies, and duplicate build output are excluded. Maintained files have a defined product, test, fixture, configuration, or documentation purpose.
+
+```powershell
+(git ls-files | Measure-Object).Count
+python scripts/source_audit.py --minimum 300
+```
+
+## Executable Python files
+
+| Area | Effective Python files |
+| --- | ---: |
+| Product (`edgeops/`) | 166 |
+| Plugins (`plugins/`) | 4 |
+| Tools (`scripts/`) | 2 |
+| Tests (`tests/`) | 129 |
+| **Subtotal excluding cases** | **301** |
+| Case tests (`cases/`) | 18 |
+| **Total** | **319** |
+
+The audit parses ASTs and requires an implemented function or method. Empty files, pure imports, docstring-only files, constant-return functions, and raise-only functions do not count. Data, documentation, package markers, HTML, CSS, and JavaScript do not contribute to the Python total. This script documents the repository's counting rule; a separate evaluator may use a different rule.
 

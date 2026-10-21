@@ -1,4 +1,4 @@
-"""Threshold rules for the bootstrap incident engine."""
+"""Threshold rules for the incident engine."""
 
 from dataclasses import dataclass
 
@@ -32,4 +32,3 @@ def evaluate_reading(reading: TelemetryReading):
         title=f"{reading.metric} threshold exceeded",
         severity=severity,
     )
-

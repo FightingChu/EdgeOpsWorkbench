@@ -1,4 +1,4 @@
-"""Independent Stage A verification without touching the default data directory."""
+"""Independent project verification using an isolated data directory."""
 
 from datetime import datetime, timezone
 from pathlib import Path
@@ -11,6 +11,13 @@ sys.path.insert(0, str(ROOT))
 from edgeops.application import OperationsService
 from edgeops.application.jobs import JobService
 from edgeops.application.workflows import WorkflowService
+from edgeops.application.analytics import AnalyticsService
+from edgeops.application.alerting import AlertingService
+from edgeops.application.configuration import ConfigurationService
+from edgeops.application.interchange import InterchangeService
+from edgeops.application.exports import ExportService
+from edgeops.application.deployments import DeploymentService
+from edgeops.codecs.ndjson import decode as decode_events
 from edgeops.benchmark import list_cases
 from edgeops.devices import load_demo
 from edgeops.devices.protocol import FrameParser, decode_message, encode_frame
@@ -51,7 +58,32 @@ def main():
             raise SystemExit("protocol verification failed")
         if len(list_cases(ROOT)) != 18:
             raise SystemExit("case catalog verification failed")
-    print("Stage verification passed")
+        report = AnalyticsService(service).report("temperature", "press-01")
+        if report["count"] != 2 or report["series"][0]["statistics"]["mean"] != 73:
+            raise SystemExit("telemetry analytics verification failed")
+        rules = [{"version": 1, "id": "event-errors", "severity": "critical",
+                  "condition": {"field": "severity", "op": "severity", "value": "error"},
+                  "group_by": ["device_id"]}]
+        if len(AlertingService(service).evaluate(rules)["matches"]) != 1:
+            raise SystemExit("alert evaluation verification failed")
+        exported = Path(directory) / "events.ndjson"
+        if ExportService(service).export(exported)["records"] != 3:
+            raise SystemExit("event export verification failed")
+        csv_file = Path(directory) / "events.csv"
+        InterchangeService().convert(exported, csv_file, "ndjson", "csv")
+        if len(InterchangeService().read(csv_file, "csv")) != 3:
+            raise SystemExit("event format roundtrip verification failed")
+        if ConfigurationService().inspect(overrides={"port": 9000})["port"] != 9000:
+            raise SystemExit("layered configuration verification failed")
+        firmware = Path(directory) / "firmware.bin"
+        firmware.write_bytes(b"edgeops-verification-firmware")
+        deployments = DeploymentService(service)
+        artifact = deployments.register(firmware, "1.0.0")
+        deployment = deployments.create("press-01", artifact["id"])
+        result = deployments.run_simulation(deployment["id"], firmware)
+        if result["state"] != "succeeded" or len(result["history"]) != 4:
+            raise SystemExit("durable deployment verification failed")
+    print("Project verification passed")
     return 0
 
 

@@ -1,3 +1,3 @@
 # Operations runbook
 
-Start with `python -m edgeops init --data-dir <dir>`. Load demo data only in a disposable directory. Use diagnostics before backup, then verify a backup before restoring to a new directory. Keep the service bound to 127.0.0.1.
+Use `python -m edgeops --data-dir <dir> init` to initialize the data directory. Device readings and imported events are queried through the CLI and dashboard. Use diagnostics to inspect database integrity, verify backups before restoring to a new directory, and keep the service bound to `127.0.0.1`.

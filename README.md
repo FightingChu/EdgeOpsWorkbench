@@ -15,21 +15,31 @@ python -m edgeops serve --open
 
 The default dashboard is `http://127.0.0.1:8877`. Runtime data is stored under `data/` and is ignored by Git.
 
-## Current vertical slice
+## Features
 
-- Versioned SQLite initialization through schema v4.
+- Versioned SQLite initialization through schema v5.
 - Device registration, deterministic telemetry, threshold rules, and incident aggregation.
 - JSONL/text event ingestion with stable fingerprints, provenance, filters, and keyset pagination.
 - Lease-based jobs, retries, cancellation, schedules, backups, diagnostics, plugins, and workflows.
 - EOW1 framed protocol, media evidence manifests, client profiles, and 18 disposable benchmark cases.
-- Local dashboard and CLI with 72 unit, workflow, reliability, and boundary tests.
+- Per-device telemetry statistics, quantiles, trend fitting, and anomaly analysis.
+- Composable event rules, grouped alert identities, notification policy, and lifecycle transitions.
+- Layered configuration, strict INI/JSON adapters, redaction, and atomic object patching.
+- JSON, NDJSON, CSV, XML, syslog, and CloudEvents decoding; snapshot exports and bounded binary codecs.
+- Firmware descriptors, chunk verification, canary plans, checkpoints, rollback policy, and durable simulated deployments.
+- Local dashboard and CLI with 272 unit, workflow, reliability, and boundary tests.
+
+## Source audit
+
+`python scripts/source_audit.py --minimum 300` checks tracked Python source with executable function or method bodies. It excludes empty files, pure imports, docstring-only modules, constant-return functions, and raise-only functions. The repository has 319 qualifying Python files: 301 outside `cases/` (172 product/plugin/tool files and 129 test files), plus 18 case tests. Markdown, JSON fixtures, CSS, and HTML do not contribute to this count.
 
 Run the current verification suite:
 
 ```powershell
 python -m unittest discover -s tests -v
 python scripts/verify.py
+python scripts/source_audit.py --minimum 300
 ```
 
-See `docs/DEVELOPMENT_PLAN.md`, `docs/ARCHITECTURE.md`, `docs/FILE_BUDGET.md`, and `HANDOFF.md` for implementation details and continuation points.
+See `docs/ARCHITECTURE.md` for architecture, `docs/DEVELOPMENT_PLAN.md` for module responsibilities and maintenance rules, `docs/FILE_BUDGET.md` for the file inventory, and `HANDOFF.md` for operational commands.
 

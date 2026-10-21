@@ -3,8 +3,9 @@
 from .migration_v2 import migrate_v2
 from .migration_v3 import migrate_v3
 from .migration_v4 import migrate_v4
+from .migration_v5 import migrate_v5
 
-SCHEMA_VERSION = 4
+SCHEMA_VERSION = 5
 
 
 def _execute_schema(connection, script):
@@ -62,6 +63,8 @@ def migrate(connection):
         migrate_v3(connection)
     if version < 4:
         migrate_v4(connection)
+    if version < 5:
+        migrate_v5(connection)
     connection.execute(
         "INSERT INTO meta(key,value) VALUES('schema_version',?) "
         "ON CONFLICT(key) DO UPDATE SET value=excluded.value",

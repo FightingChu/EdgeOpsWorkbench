@@ -1,4 +1,4 @@
-"""Symmetric canonical event codec shared by example importer and exporter."""
+"""Symmetric canonical event codec shared by JSONL import and export plugins."""
 
 import json
 

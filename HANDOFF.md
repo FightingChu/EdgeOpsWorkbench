@@ -1,49 +1,44 @@
-# New Task Handoff
+# Operations Handoff
 
-## Current state
+## Project overview
 
-The repository has completed the 300-file milestone. It contains the original Stage A vertical slice plus event ingestion/querying, durable jobs and schedules, backups and diagnostics, plugins, resumable workflows, PWA/client contracts, the EOW1 device protocol, bounded media evidence, security audits, and 18 disposable benchmark cases.
+EdgeOps Workbench is a local-first device telemetry, monitoring, and incident-response platform. Its modules cover event ingestion and querying, durable jobs and schedules, backups and diagnostics, plugins, resumable workflows, browser assets and client state, the EOW1 device protocol, media evidence, security audits, and disposable benchmark cases.
 
-Start with:
+## Operator commands
+
+Global options such as `--data-dir` precede the subcommand.
+
+```powershell
+python -m edgeops --data-dir <dir> init
+python -m edgeops --data-dir <dir> import-events <file> --format jsonl
+python -m edgeops --data-dir <dir> events --limit 50
+python -m edgeops --data-dir <dir> diagnostics
+python -m edgeops --data-dir <dir> backup <new-dir>
+python -m edgeops --data-dir <dir> serve --open
+python -m edgeops cases list
+```
+
+The `jobs`, `schedules`, and `workflows` command groups manage durable execution. The `analytics`, `evaluate-rules`, `configuration`, `convert-events`, `export-events`, and `deployments` commands expose telemetry reports, rule evaluation, configuration inspection, format conversion, snapshot exports, and firmware rollout operations. Backup restoration requires a new destination directory.
+
+## Operational constraints
+
+- Python runtime code uses the standard library only.
+- The service binds to `127.0.0.1` by default.
+- Schema v5 is supported; released migrations are immutable. Schema v5 adds firmware artifacts, deployment state, and transition evidence.
+- Event imports validate the source before committing records and import evidence.
+- Event pagination uses bounded snapshot cursors; duplicate content retains provenance.
+- Job and workflow completion checks lease tokens before committing results.
+- Benchmark setup writes to a disposable target outside the repository.
+- Generated databases, logs, caches, and bytecode stay out of Git.
+
+## Maintenance checks
 
 ```powershell
 python -m unittest discover -s tests -v
 python scripts/verify.py
 node --check edgeops/static/app.js
+python scripts/source_audit.py --minimum 300
 ```
 
-## Operator commands
-
-- `python -m edgeops init --data-dir <dir>` initializes schema v4.
-- `python -m edgeops demo --data-dir <dir>` loads deterministic devices and readings.
-- `python -m edgeops import-events <file> --format jsonl --data-dir <dir>` imports events atomically.
-- `python -m edgeops events --limit 50 --data-dir <dir>` queries stable cursor pages.
-- `python -m edgeops jobs ...` and `python -m edgeops schedules ...` manage leased work.
-- `python -m edgeops workflows ...` validates and resumes versioned workflows.
-- `python -m edgeops backup <new-dir> --data-dir <dir>` creates a verified snapshot.
-- `python -m edgeops cases list` lists benchmark bundles; `cases setup` copies a disposable target.
-
-## Verified baseline
-
-Verified on 2026-10-19 with Python 3.10:
-
-- 72 repository tests pass.
-- `scripts/verify.py` passes in an isolated temporary directory.
-- JavaScript syntax checks pass for the dashboard and service worker.
-- 310 maintained files are present; generated databases, logs, caches, and bytecode remain ignored.
-- All 18 case bundles pass manifest validation, exact fault precondition checks, and setup/reset smoke checks.
-- Runtime dependencies remain empty and the default bind remains `127.0.0.1`.
-
-## Design constraints
-
-- Python runtime code stays standard-library only.
-- Released SQLite migrations are immutable; schema v4 is the current supported version.
-- Imports validate the complete source before opening a write transaction.
-- Pagination is bounded and snapshot-based; duplicate event content keeps provenance rows.
-- Job and workflow completion checks lease tokens before committing results.
-- Benchmark setup writes only to a validated disposable target outside the repository.
-
-## Future work
-
-The next useful expansion is deeper Stage E/F work: a real Tkinter operator shell, a small C protocol agent, simulated firmware deployment states, richer media adapters, and release archive verification. Preserve the current migration and event identity contracts while extending those surfaces.
+The AST audit counts 319 executable Python files, including 301 outside `cases/`. That outside-case total contains 172 product/plugin/tool files and 129 test files. Empty, import-only, docstring-only, constant-return, and raise-only files are excluded. The full repository test suite contains 272 tests.
 

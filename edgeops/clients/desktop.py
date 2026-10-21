@@ -1,4 +1,4 @@
-"""Tkinter-free desktop view model used by future GUI shells and tests."""
+"""Client summary view model with immutable display rows."""
 
 from dataclasses import dataclass
 

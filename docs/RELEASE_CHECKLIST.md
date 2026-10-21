@@ -1,3 +1,11 @@
-# Release checklist
+# Maintenance checks
 
-Run the unit suite, Stage verification, JavaScript syntax checks, and a temporary-directory backup round trip. Inspect the manifest for schema version and dependency state. Release archives contain source, fixtures, case metadata, and documentation; they exclude databases, logs, caches, and local configuration.
+The repository provides unit and regression tests, an independent verification script, JavaScript syntax checks, and backup round-trip tests. Database and backup manifests record schema version and integrity information. Generated databases, logs, caches, and local configuration are excluded from Git.
+
+```powershell
+python -m unittest discover -s tests -v
+python scripts/verify.py
+node --check edgeops/static/app.js
+node --check edgeops/static/sw.js
+node --check edgeops/static/sw-register.js
+```

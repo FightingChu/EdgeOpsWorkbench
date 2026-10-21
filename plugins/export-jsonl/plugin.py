@@ -1,4 +1,4 @@
-"""Example exporter paired with import-jsonl."""
+"""JSONL exporter paired with the import-jsonl plugin."""
 
 from edgeops.plugins.codecs import encode_events
 
